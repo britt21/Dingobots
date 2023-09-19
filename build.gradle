@@ -1,4 +1,34 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlin_version = '1.3.72'
+
+        // Versions for all the dependencies we plan to use. It's particularly useful for kotlin and
+        // navigation where the versions of the plugin needs to be the same as the version of the
+        // library defined in the app Gradle file
+        nav_version = "2.3.5"
+        paging_version = "3.0.0"
+        version_android_gradle_plugin = '4.0.1'
+        version_core = "1.3.1"
+        version_constraint_layout = "1.1.3"
+        version_glide = "4.8.0"
+        version_kotlin = "1.6.0"
+        version_lifecycle = "2.2.0"
+        version_moshi = "1.8.0"
+        nav_version = "2.3.5"
+        version_navigation = "1.0.0"
+        version_retrofit = "2.9.0"
+        version_recyclerview = "1.0.0"
+        version_navigation = "1.0.0"
+        lifecycle_version = "2.5.1"
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+    }
+
+}
+
 plugins {
     id 'com.android.application' version '8.0.0' apply false
     id 'com.android.library' version '8.0.0' apply false

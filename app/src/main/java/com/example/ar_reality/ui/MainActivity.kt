@@ -1,4 +1,4 @@
-package com.example.ar_reality
+package com.example.ar_reality.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -8,22 +8,9 @@ import android.view.Choreographer
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.SurfaceView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.GestureDetectorCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.ViewPropertyAnimatorListenerAdapter
-import androidx.core.view.ViewPropertyAnimatorUpdateListener
-import androidx.customview.widget.ViewDragHelper
 import com.example.ar_reality.databinding.ActivityMainBinding
 import com.google.android.filament.*
-import com.google.android.filament.gltfio.Animator
-import com.google.android.filament.gltfio.Gltfio
 import com.google.android.filament.utils.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.IOException
-import java.io.InputStream
 import java.nio.ByteBuffer
 
 
@@ -65,25 +52,9 @@ class MainActivity : Activity() {
 
             for (allrender in modelViewer) {
                 allrender.render(currentTime)
-            }}
-    }
-
-
-    fun onItemClick(position: Int) {
-        // Set the clicked item index to start animation for that item
-        clickedItemIndex = position
-        when(position){
-          0->{
-              createIndirectLights(position,40_000f)
-          }
-
-
+            }
         }
-
-
-
     }
-
 
 
 
@@ -98,12 +69,13 @@ class MainActivity : Activity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         surfaceView = listOf(
-             binding.etanim1,
-             binding.etanim2,
-             binding.etanim3,
-             binding.etanim4,
-         )
+            binding.etanim1,
+            binding.etanim2,
+            binding.etanim3,
+            binding.etanim4,
+        )
 
+        fullScreen(this)
 
 
 
@@ -112,7 +84,7 @@ class MainActivity : Activity() {
 
         choreographer = Choreographer.getInstance()
 
-        modelViewer = surfaceView.map {  ModelViewer(it) }
+        modelViewer = surfaceView.map { ModelViewer(it) }
 
 
 
@@ -148,30 +120,31 @@ class MainActivity : Activity() {
         for (modelViewers in modelViewer) {
             val view = modelViewers.view
             view.renderQuality = view.renderQuality.apply {
-                hdrColorBuffer = View.QualityLevel.MEDIUM
+                hdrColorBuffer = View.QualityLevel.HIGH
             }
 
 
-        view.dynamicResolutionOptions = view.dynamicResolutionOptions.apply {
-            enabled = true
-            quality = View.QualityLevel.MEDIUM
-        }
+            view.dynamicResolutionOptions = view.dynamicResolutionOptions.apply {
+                enabled = true
+                quality = View.QualityLevel.HIGH
+            }
 //        binding.etbg.setOnClickListener {
 //             isAnimating = !isAnimating // Toggle animation when the button is clicked
 //        }
 
             setUpClicks()
 
-        view.multiSampleAntiAliasingOptions = view.multiSampleAntiAliasingOptions.apply {
-            enabled = true
-        }
+            view.multiSampleAntiAliasingOptions = view.multiSampleAntiAliasingOptions.apply {
+                enabled = true
 
-        view.ambientOcclusionOptions = view.ambientOcclusionOptions.apply {
-            enabled = true
-        }
-
-            view.antiAliasing = View.AntiAliasing.FXAA
             }
+
+            view.ambientOcclusionOptions = view.ambientOcclusionOptions.apply {
+                enabled = true
+            }
+
+            view.antiAliasing = View.AntiAliasing.NONE
+        }
 
 
         loadGlb()
@@ -191,20 +164,25 @@ class MainActivity : Activity() {
 
         for ((index, item) in itemsbgs.withIndex()) {
             item.setOnClickListener {
-                when(index){
-                    0 ->{
+                when (index) {
+                    0 -> {
                         onItemClick(index)
                     }
-                     1 ->{
-                         onItemClick(index)
-                    }
-                     2 ->{
-                         onItemClick(index)
-                    }
-                     3 ->{
-                         onItemClick(index)
 
-                    }else ->{
+                    1 -> {
+                        onItemClick(index)
+                    }
+
+                    2 -> {
+                        onItemClick(index)
+                    }
+
+                    3 -> {
+                        onItemClick(index)
+
+                    }
+
+                    else -> {
 
                     }
                 }
@@ -213,39 +191,130 @@ class MainActivity : Activity() {
         }
     }
 
-    fun setUpAnime(postion: Int): SurfaceView{
-        when(postion){
-            0->{
+    fun onItemClick(position: Int) {
+        // Set the clicked item index to start animation for that item
+        clickedItemIndex = position
+        when (position) {
+            0 -> {
+                createIndirectLights(position, 40_000f)
+                createIndirectLights(1, 0_000f)
+                createIndirectLights(2, 0_000f)
+                createIndirectLights(3, 0_000f)
+            }
 
-                return binding.etanim1
+            1 -> {
+                createIndirectLights(position, 40_000f)
+                createIndirectLights(0, 0_000f)
+                createIndirectLights(2, 0_000f)
+                createIndirectLights(3, 0_000f)
 
             }
-             1->{
-                 return binding.etanim2
 
-             }
-             2->{
-                 return   binding.etanim3
+            2 -> {
+                createIndirectLights(position, 40_000f)
+                createIndirectLights(0, 0_000f)
+                createIndirectLights(1, 0_000f)
+                createIndirectLights(3, 0_000f)
 
-             }
-             3->{
-                 return  binding.etanim4
+            }
 
-             }else ->{
-                 return binding.etanim1
-             }
+            3 -> {
+                createIndirectLights(position, 40_000f)
+                createIndirectLights(0, 0_000f)
+                createIndirectLights(2, 0_000f)
+                createIndirectLights(1, 0_000f)
+
+            }else ->{
+            createIndirectLights(null, 10_000f)
+
         }
+
+
+        }
+
+
     }
 
 
+    fun createIndirectLights(postion: Int? = null, light: Float) {
 
-     fun createIndirectLights(postion: Int,light: Float) {
+        when(postion) {
+            0 -> {
+                val ibl = "venetian_crossroads_2k"
 
-        val ibl = "venetian_crossroads_2k"
+                var viewer = modelViewer
+                val engine = viewer[postion!!].engine
+                val scene = viewer[postion].scene
 
-        for (viewer in modelViewer) {
-            val engine = viewer.engine
-            val scene = viewer.scene
+                readCompressAsset("envs/${ibl}/${ibl}_ibl.ktx").let {
+                    scene.indirectLight = KTXLoader.createIndirectLight(engine, it)
+                    scene.indirectLight!!.intensity = light
+                }
+
+                readCompressAsset("envs/${ibl}/${ibl}_skybox.ktx").let {
+                    scene.skybox = KTXLoader.createSkybox(engine, it)
+                }
+
+            }
+
+            1 -> {
+                val ibl = "venetian_crossroads_2k"
+
+                var viewer = modelViewer
+                val engine = viewer[postion!!].engine
+                val scene = viewer[postion].scene
+
+                readCompressAsset("envs/${ibl}/${ibl}_ibl.ktx").let {
+                    scene.indirectLight = KTXLoader.createIndirectLight(engine, it)
+                    scene.indirectLight!!.intensity = light
+                }
+
+                readCompressAsset("envs/${ibl}/${ibl}_skybox.ktx").let {
+                    scene.skybox = KTXLoader.createSkybox(engine, it)
+                }
+
+            }
+
+            2 -> {
+                val ibl = "venetian_crossroads_2k"
+
+                var viewer = modelViewer
+                val engine = viewer[postion!!].engine
+                val scene = viewer[postion].scene
+
+                readCompressAsset("envs/${ibl}/${ibl}_ibl.ktx").let {
+                    scene.indirectLight = KTXLoader.createIndirectLight(engine, it)
+                    scene.indirectLight!!.intensity = light
+                }
+
+                readCompressAsset("envs/${ibl}/${ibl}_skybox.ktx").let {
+                    scene.skybox = KTXLoader.createSkybox(engine, it)
+                }
+
+            }
+
+            3 -> {
+                val ibl = "venetian_crossroads_2k"
+
+                var viewer = modelViewer
+                val engine = viewer[postion!!].engine
+                val scene = viewer[postion].scene
+
+                readCompressAsset("envs/${ibl}/${ibl}_ibl.ktx").let {
+                    scene.indirectLight = KTXLoader.createIndirectLight(engine, it)
+                    scene.indirectLight!!.intensity = light
+                }
+
+                readCompressAsset("envs/${ibl}/${ibl}_skybox.ktx").let {
+                    scene.skybox = KTXLoader.createSkybox(engine, it)
+                }
+
+            }else ->{
+            val ibl = "venetian_crossroads_2k"
+
+            var viewer = modelViewer
+            val engine = viewer[postion!!].engine
+            val scene = viewer[postion].scene
 
             readCompressAsset("envs/${ibl}/${ibl}_ibl.ktx").let {
                 scene.indirectLight = KTXLoader.createIndirectLight(engine, it)
@@ -255,8 +324,9 @@ class MainActivity : Activity() {
             readCompressAsset("envs/${ibl}/${ibl}_skybox.ktx").let {
                 scene.skybox = KTXLoader.createSkybox(engine, it)
             }
-        }
 
+        }
+        }
 
     }
 
@@ -267,24 +337,18 @@ class MainActivity : Activity() {
         return ByteBuffer.wrap(bytes)
     }
 
-//    fun createReandable() {
-//        assets.open("models/bob.glb").use { input ->
-//            val byte = ByteArray(input.available())
-//            input.read(byte)
-//            ByteBuffer.wrap(byte)
-//        }
-//    }
 
 
-private fun loadGlb() {
-    val glbBuffer = readAsset("models/bob.glb")
 
-    for (viewer in modelViewer) {
+    private fun loadGlb() {
+        val glbBuffer = readAsset("models/bob.glb")
+
+        for (viewer in modelViewer) {
 //        viewer.scene.indirectLight?.intensity = 4000.0f // Adjust the intensity as needed
-        viewer.loadModelGlb(glbBuffer)
-        viewer.transformToUnitCube()
+            viewer.loadModelGlb(glbBuffer)
+            viewer.transformToUnitCube()
+        }
     }
-}
 
 
     private fun readAsset(assetName: String): ByteBuffer {
@@ -293,39 +357,6 @@ private fun loadGlb() {
         input.read(bytes)
         return ByteBuffer.wrap(bytes)
     }
-
-
-//    private val frameCallback = object : Choreographer.FrameCallback {
-//
-//        override fun doFrame(currentTime: Long) {
-//            choreographer.postFrameCallback(this)
-//
-//            val seconds = (currentTime - startTime).toDouble() / 1_000_000_000
-//
-//            for (i in modelViewer.indices) {
-//                if (i == clickedItemIndex) {
-//                    modelViewer[i].animator?.apply {
-//                        if (animationCount > 0) {
-//                            val animationTime = (seconds % getAnimationDuration(0))
-//                            applyAnimation(6, animationTime.toFloat())
-//                        }
-//                        updateBoneMatrices()
-//                    }
-//                }
-//            }
-//
-//            for (allrender in modelViewer) {
-//                allrender.render(currentTime)
-//            }
-//        }
-//
-//        fun onItemClick(position: Int) {
-//            // Set the clicked item index to start animation for that item
-//            clickedItemIndex = position
-//        }
-//    }
-
-
 
 
     override fun onResume() {
