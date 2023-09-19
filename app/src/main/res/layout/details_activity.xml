@@ -1,6 +1,436 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <SurfaceView
+            android:id="@+id/etanim1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="19dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/textView"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Profile" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            app:srcCompat="@drawable/elips_bg" />
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Personal Information" />
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username" />
+                <TextView
+                    android:id="@+id/etuname"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email" />
+                <TextView
+                    android:id="@+id/etemail"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number" />
+                <TextView
+                    android:id="@+id/etphone"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of birth" />
+                <TextView
+                    android:id="@+id/etdob"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+     <LinearLayout
+         android:layout_marginBottom="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address" />
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country" />
+                <TextView
+                    android:id="@+id/etcountry"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City" />
+                <TextView
+                    android:id="@+id/etcity"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Street Name" />
+                <TextView
+                    android:id="@+id/etstreetname"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Street Name" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:text="Street Address"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/etstadress"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+     <LinearLayout
+         android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subscription" />
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plan" />
+                <TextView
+                    android:id="@+id/etplan"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plan" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status" />
+                <TextView
+                    android:id="@+id/etstatus"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Method" />
+                <TextView
+                    android:id="@+id/etpaymethod"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment method" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/etbg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="20dp"
+                    android:text="Terms"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/etterms"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:id="@+id/dimbg"
+        android:background="@color/black">
+
+        <ProgressBar
+            android:progressTint="#673AB7"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

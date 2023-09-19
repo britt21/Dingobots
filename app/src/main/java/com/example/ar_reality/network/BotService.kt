@@ -13,7 +13,7 @@ const val BASE_URL = "https://random-data-api.com"
 interface BotInterface {
 
     @GET("api/v2/users")
-    fun getBotDetails(): Response<BotResponse>
+   suspend fun getBotDetails(): Response<BotResponse>
 }
 
 var retroService = Retrofit.Builder()

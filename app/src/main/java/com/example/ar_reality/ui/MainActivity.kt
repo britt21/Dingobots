@@ -2,6 +2,7 @@ package com.example.ar_reality.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.Choreographer
@@ -67,6 +68,7 @@ class MainActivity : Activity() {
         setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        fullScreen(this)
 
         surfaceView = listOf(
             binding.etanim1,
@@ -75,7 +77,6 @@ class MainActivity : Activity() {
             binding.etanim4,
         )
 
-        fullScreen(this)
 
 
 
@@ -97,6 +98,7 @@ class MainActivity : Activity() {
             viewContent.scene = viewer.scene
             viewContent.renderer = viewer.renderer
         }
+
 
 
         for (i in surfaceView.indices) {
@@ -123,6 +125,9 @@ class MainActivity : Activity() {
                 hdrColorBuffer = View.QualityLevel.HIGH
             }
 
+            binding.prcdbtn.setOnClickListener {
+                startActivity(Intent(this,BotDetails::class.java))
+            }
 
             view.dynamicResolutionOptions = view.dynamicResolutionOptions.apply {
                 enabled = true

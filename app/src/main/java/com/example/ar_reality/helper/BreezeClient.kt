@@ -13,6 +13,7 @@ open class NetworkHelper<T>(var data: T? = null, var message: String? = null) {
 
 class BaseClient {
     fun <T> handleResponse(response: Response<T>): NetworkHelper<T> {
+        println("ETCASE: ${response.raw().request().url()}")
         when {
             response.isSuccessful -> {
                 println("HELLOBODYBOB: ${response.body()}")
